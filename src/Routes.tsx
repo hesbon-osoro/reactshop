@@ -25,7 +25,7 @@ const RoutesWrap: FC = () => {
 	);
 };
 const Routes: FC<RouteComponentProps> = props => {
-	const [loggedIn, setLoggedIn] = useState(true);
+	const [loggedIn] = useState(true);
 	return (
 		<div>
 			<Header />

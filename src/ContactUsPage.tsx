@@ -1,20 +1,21 @@
-import React from 'react';
-
+import * as React from 'react';
 import ContactUs from './ContactUs';
 import { ISubmitResult, IValues } from './Form';
 
-export class ContactUsPage extends React.Component<{}, {}> {
-	private handleSubmit = async (values: IValues): Promise<ISubmitResult> => {
-		const wait = (ms: number): Promise<void> => {
-			return new Promise(res => setTimeout(res, ms));
-		};
-		await wait(1000);
-		//simulate asynchronous web API call
-		return {
-			success: true,
-		};
-	};
+const wait = (ms: number): Promise<void> => {
+	return new Promise(resolve => setTimeout(resolve, ms));
+};
 
+class ContactUsPage extends React.Component<{}, {}> {
+	public constructor(props: {}) {
+		super(props);
+		this.state = {
+			email: '',
+			name: '',
+			notes: '',
+			reason: '',
+		};
+	}
 	public render() {
 		return (
 			<div className="page-container">
@@ -26,6 +27,17 @@ export class ContactUsPage extends React.Component<{}, {}> {
 			</div>
 		);
 	}
+	private handleSubmit = async (values: IValues): Promise<ISubmitResult> => {
+		await wait(1000); // simulate asynchronous web API call
+		// return {
+		//   errors: {
+		//     email: ["Some is wrong with this"]
+		//   },
+		//   success: false
+		// };
+		return {
+			success: true,
+		};
+	};
 }
-
 export default ContactUsPage;
